@@ -477,6 +477,11 @@ class DahuaDataUpdateCoordinator(DataUpdateCoordinator):
                 elif action == "Stop":
                     self._dahua_event_timestamp[event_key] = 0
                     listener()
+                elif action == "Pulse":
+                    self._dahua_event_timestamp[event_key] = int(time.time())
+                    listener()
+                    self._dahua_event_timestamp[event_key] = 0
+                    listener()
 
     def translate_event_code(self, event: dict):
         """
@@ -540,7 +545,7 @@ class DahuaDataUpdateCoordinator(DataUpdateCoordinator):
         """ Returns true if this is a doorbell (VTO) """
         m = self.model.upper()
         return m.startswith("VTO") or m.startswith("DH-VTO") or (
-                    "NVR" not in m and m.startswith("DHI")) or self.is_amcrest_doorbell() or self.is_empiretech_doorbell()
+                    "NVR" not in m and m.startswith("DHI-VTO")) or self.is_amcrest_doorbell() or self.is_empiretech_doorbell()
 
     def is_amcrest_doorbell(self) -> bool:
         """ Returns true if this is an Amcrest doorbell """

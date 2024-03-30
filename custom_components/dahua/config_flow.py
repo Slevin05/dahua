@@ -37,6 +37,10 @@ DEFAULT_EVENTS = ["VideoMotion", "CrossLineDetection", "AlarmLocal", "VideoLoss"
 
 ALL_EVENTS = ["VideoMotion",
               "VideoLoss",
+              "_DoorFace_",
+              "FaceRecognition",
+              "TrafficJunction",
+              "AnatomyTempDetectToPhone",
               "AlarmLocal",
               "CrossLineDetection",
               "CrossRegionDetection",
